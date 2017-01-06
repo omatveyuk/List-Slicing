@@ -59,8 +59,7 @@ def custom_append(input_list, value):
 
     """
     length = custom_len(input_list)
-    input_list[length:] = [value] 
-    
+    input_list[length:] = [value]  
 
 
 def custom_extend(input_list, second_list):
@@ -79,8 +78,8 @@ def custom_extend(input_list, second_list):
 
     """
 
-    pass
-
+    length = custom_len(input_list)
+    input_list[length:] = second_list
 
 def custom_insert(input_list, index, value):
     """Inserts value at index in the list.
@@ -97,7 +96,7 @@ def custom_insert(input_list, index, value):
 
     """
 
-    pass
+    input_list[index:index+1] = [value, input_list[index]]
 
 
 def custom_remove(input_list, value):
@@ -115,8 +114,11 @@ def custom_remove(input_list, value):
         True
 
     """
-
-    pass
+    length = custom_len(input_list)
+    for i in range(length):
+        if input_list[i] == value:
+            input_list[i:i+1] = []
+            break
 
 
 def custom_pop(input_list):
@@ -134,8 +136,9 @@ def custom_pop(input_list):
         ['Jan', 'Feb']
 
     """
-
-    return None
+    last = input_list[-1]
+    input_list[-1:] = []
+    return last
 
 
 def custom_index(input_list, value):
@@ -150,8 +153,10 @@ def custom_index(input_list, value):
         1
 
     """
-
-    return 0
+    length = custom_len(input_list)
+    for i in range(length):
+        if input_list[i] == value:
+            return i
 
 
 def custom_count(input_list, value):
@@ -166,8 +171,11 @@ def custom_count(input_list, value):
         2
 
     """
-
-    return 0
+    count = 0
+    for elm in input_list:
+        if elm == value:
+            count += 1
+    return count
 
 
 def custom_reverse(input_list):
@@ -186,7 +194,11 @@ def custom_reverse(input_list):
 
     """
 
-    pass
+    length = custom_len(input_list)
+    for i in range(length/2):
+        temp = input_list[i]
+        input_list[i] = input_list[-1-i]
+        input_list[-1-i] = temp
 
 
 def custom_contains(input_list, value):
@@ -205,8 +217,10 @@ def custom_contains(input_list, value):
         True
 
     """
-
-    return None
+    for elm in input_list:
+        if elm == value:
+            return True
+    return False
 
 
 def custom_equality(some_list, another_list):
@@ -224,8 +238,16 @@ def custom_equality(some_list, another_list):
         False
 
     """
+    length = custom_len(some_list)
+    equality = True
+    if length == custom_len(another_list):
+        for i in range(length):
+            if some_list[i] != another_list[i]:
+                equality = False
+    else:
+        equality = False
 
-    return None
+    return equality
 
 
 ##############################################################################
