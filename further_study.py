@@ -244,6 +244,7 @@ def custom_equality(some_list, another_list):
         for i in range(length):
             if some_list[i] != another_list[i]:
                 equality = False
+                break
     else:
         equality = False
 
